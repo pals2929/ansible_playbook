@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  vars:
+    list1:
+      - 'Pallavi'
+      - 'Shakti'
+      - 'Pankhuri'
+    tools: ['ansible' , 'oracle' , 'DB2' ,'teraform']
+  tasks:
+    - name: Debugging list1
+      debug:
+        var: list1
+    - name: Debugging list with_items
+      debug:
+        msg: "list1 item = {{item.0}} and list2 item = {{ item.1 }}"
+      with_nested: 
+         - "{{list1}}"
+         - "{{ tools}}"
